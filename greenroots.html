@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GreenRoots — Growing Community, One Garden at a Time</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1F3D2B;
+    --forest-deep:#162E20;
+    --moss:#4F7B54;
+    --sand:#F3EEE2;
+    --sand-dim:#EAE3D3;
+    --gold:#D9A441;
+    --ink:#22201B;
+    --paper:#FBF9F4;
+    --line: rgba(34,32,27,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.08;
+    margin:0;
+    color:var(--forest-deep);
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  button{font-family:inherit;cursor:pointer;border:none;}
+
+  /* ---------- 01 NAV ---------- */
+  header.nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 32px;
+    max-width:1120px;margin:0 auto;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+  }
+  .logo svg{width:34px;height:34px;}
+  .logo-word{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.3rem;
+    letter-spacing:-0.01em;
+    color:var(--forest-deep);
+  }
+  .logo-word span{color:var(--moss);}
+  nav.links{display:flex;gap:34px;}
+  nav.links a{
+    font-size:0.95rem;
+    font-weight:500;
+    color:var(--ink);
+    padding:6px 0;
+    border-bottom:2px solid transparent;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  nav.links a:hover{border-color:var(--gold);}
+  .nav-toggle{display:none;background:none;}
+
+  /* ---------- 02 HERO ---------- */
+  section.hero{
+    position:relative;
+    padding:56px 32px 72px;
+    max-width:1120px;margin:0 auto;
+  }
+  .hero-frame{
+    position:relative;
+    height:520px;
+    border-radius:6px;
+    overflow:hidden;
+    background:linear-gradient(180deg,#2C4F35 0%, #1F3D2B 60%, #163024 100%);
+  }
+  .hero-frame svg.scene{position:absolute;inset:0;width:100%;height:100%;}
+  .hero-overlay{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:44px;
+    background:linear-gradient(180deg, rgba(22,48,32,0) 35%, rgba(15,28,19,0.72) 100%);
+  }
+  .eyebrow-none{display:none;}
+  .hero-overlay h1{
+    color:#FBF9F4;
+    font-size:clamp(2rem, 4.2vw, 3.4rem);
+    max-width:14ch;
+  }
+  .hero-overlay p{
+    color:#E3E9DF;
+    margin-top:14px;
+    max-width:46ch;
+    font-size:1.05rem;
+  }
+  .btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:var(--gold);
+    color:var(--forest-deep);
+    font-weight:600;
+    font-size:0.95rem;
+    border-radius:3px;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn:hover{background:#E7B75B;}
+  .btn:active{transform:translateY(1px);}
+  .hero-cta{margin-top:26px;align-self:flex-start;}
+
+  /* ---------- 03 ABOUT ---------- */
+  section.about{
+    padding:80px 32px;
+    max-width:1120px;margin:0 auto;
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1.15fr;
+    gap:56px;
+    align-items:center;
+  }
+  .about-media{
+    background:var(--sand-dim);
+    border-radius:6px;
+    aspect-ratio:4/3.3;
+    overflow:hidden;
+    position:relative;
+  }
+  .about-media svg{width:100%;height:100%;}
+  .about-copy h2{font-size:clamp(1.7rem,2.6vw,2.3rem);max-width:13ch;}
+  .about-copy p{margin-top:18px;color:#4A473E;font-size:1.02rem;max-width:52ch;}
+  .about-copy p + p{margin-top:12px;}
+  .about-stats{
+    display:flex;gap:36px;margin-top:28px;
+  }
+  .stat b{
+    display:block;font-family:'Fraunces',serif;font-size:1.7rem;color:var(--moss);
+  }
+  .stat span{font-size:0.85rem;color:#6b6858;}
+
+  /* ---------- 04 PROGRAMS ---------- */
+  section.programs{
+    background:var(--forest);
+    padding:80px 32px;
+  }
+  .programs-inner{max-width:1120px;margin:0 auto;}
+  .programs h2{
+    color:#FBF9F4;text-align:center;
+    font-size:clamp(1.7rem,2.6vw,2.3rem);
+  }
+  .programs-sub{
+    color:#B7C9BB;text-align:center;max-width:48ch;margin:14px auto 0;font-size:1rem;
+  }
+  .cards{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+    margin-top:48px;
+  }
+  .card{
+    background:#254631;
+    border:1px solid rgba(251,249,244,0.08);
+    border-radius:6px;
+    padding:32px 26px;
+  }
+  .card .icon{
+    width:52px;height:52px;
+    display:flex;align-items:center;justify-content:center;
+    background:rgba(217,164,65,0.14);
+    border-radius:50%;
+    margin-bottom:20px;
+  }
+  .card .icon svg{width:26px;height:26px;}
+  .card h3{color:#FBF9F4;font-size:1.2rem;font-weight:500;}
+  .card p{color:#B7C9BB;margin-top:10px;font-size:0.94rem;}
+
+  /* ---------- 05 GALLERY ---------- */
+  section.gallery{padding:80px 32px;max-width:1120px;margin:0 auto;}
+  .gallery h2{
+    text-align:center;font-size:clamp(1.7rem,2.6vw,2.3rem);margin-bottom:40px;
+  }
+  .gallery-strip{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:4px;
+    border-radius:6px;overflow:hidden;
+  }
+  .gallery-strip figure{margin:0;aspect-ratio:1/1.05;overflow:hidden;position:relative;}
+  .gallery-strip svg{width:100%;height:100%;}
+
+  /* ---------- 06 TESTIMONIAL ---------- */
+  section.testimonial{
+    padding:80px 32px;background:var(--sand);
+  }
+  .testimonial-inner{
+    max-width:680px;margin:0 auto;text-align:center;
+  }
+  .quote-mark{
+    font-family:'Fraunces',serif;font-size:3.4rem;color:var(--gold);line-height:0.5;display:block;margin-bottom:18px;
+  }
+  .testimonial-inner blockquote{
+    margin:0;font-family:'Fraunces',serif;font-weight:500;font-style:italic;
+    font-size:clamp(1.2rem,2.1vw,1.55rem);color:var(--forest-deep);
+  }
+  .testimonial-person{
+    display:flex;align-items:center;justify-content:center;gap:12px;
+    margin-top:28px;
+  }
+  .avatar{
+    width:44px;height:44px;border-radius:50%;overflow:hidden;background:var(--moss);
+  }
+  .avatar svg{width:100%;height:100%;}
+  .testimonial-person div{text-align:left;}
+  .testimonial-person b{display:block;font-size:0.95rem;}
+  .testimonial-person span{font-size:0.85rem;color:#6b6858;}
+
+  /* ---------- 07 NEWSLETTER ---------- */
+  section.newsletter{
+    background:var(--forest-deep);
+    padding:72px 32px;
+  }
+  .newsletter-inner{
+    max-width:640px;margin:0 auto;text-align:center;
+  }
+  .newsletter h2{color:#FBF9F4;font-size:clamp(1.5rem,2.4vw,2rem);}
+  .newsletter p{color:#B7C9BB;margin-top:12px;font-size:1rem;}
+  .newsletter-form{
+    display:flex;gap:10px;margin-top:28px;
+    max-width:440px;margin-left:auto;margin-right:auto;
+  }
+  .newsletter-form input{
+    flex:1;padding:14px 16px;border-radius:3px;border:1px solid rgba(251,249,244,0.2);
+    background:rgba(251,249,244,0.06);color:#FBF9F4;font-size:0.95rem;
+  }
+  .newsletter-form input::placeholder{color:#8FA093;}
+  .newsletter-form button{
+    padding:14px 26px;background:var(--gold);color:var(--forest-deep);
+    font-weight:600;border-radius:3px;white-space:nowrap;
+  }
+  .newsletter-form button:hover{background:#E7B75B;}
+
+  /* ---------- 08 FOOTER ---------- */
+  footer{
+    background:var(--forest);
+    padding:56px 32px 32px;
+    color:#B7C9BB;
+  }
+  .footer-inner{
+    max-width:1120px;margin:0 auto;
+    display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:32px;
+    align-items:start;
+  }
+  .footer-brand .logo-word{color:#FBF9F4;}
+  .footer-brand .logo-word span{color:var(--gold);}
+  .footer-brand p{margin-top:14px;font-size:0.9rem;max-width:32ch;color:#9FB0A2;}
+  .footer-col h4{
+    font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;
+    color:#8FA093;margin-bottom:14px;font-weight:600;
+  }
+  .footer-col a{
+    display:block;font-size:0.92rem;margin-bottom:10px;color:#D6DECD;
+    transition:color .15s ease;
+  }
+  .footer-col a:hover{color:var(--gold);}
+  .socials{display:flex;gap:10px;}
+  .socials a{
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(251,249,244,0.08);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .socials a:hover{background:var(--gold);}
+  .socials svg{width:16px;height:16px;}
+  .socials svg path,.socials svg circle{stroke:#FBF9F4;}
+  .socials a:hover svg path,.socials a:hover svg circle{stroke:var(--forest-deep);}
+  .footer-bottom{
+    max-width:1120px;margin:40px auto 0;
+    padding-top:24px;border-top:1px solid rgba(251,249,244,0.1);
+    font-size:0.82rem;color:#8FA093;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    nav.links{display:none;}
+    .nav-toggle{display:block;}
+    .about-grid{grid-template-columns:1fr;}
+    .cards{grid-template-columns:1fr;}
+    .gallery-strip{grid-template-columns:repeat(2,1fr);}
+    .footer-inner{grid-template-columns:1fr 1fr;}
+    .hero-frame{height:420px;}
+  }
+  @media (max-width: 520px){
+    .wrap,.hero,.about,.gallery,.newsletter,.testimonial,.programs,footer{padding-left:20px;padding-right:20px;}
+    .newsletter-form{flex-direction:column;}
+    .gallery-strip{grid-template-columns:repeat(2,1fr);}
+    .footer-inner{grid-template-columns:1fr;}
+    .about-stats{flex-wrap:wrap;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--gold);outline-offset:2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- 01 — NAV BAR -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top" aria-label="GreenRoots home">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="20" fill="#1F3D2B"/>
+        <path d="M20 30 C20 30 20 20 20 15" stroke="#D9A441" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M20 18 C20 18 13 16 12 9 C12 9 20 9 22 16 C22 16 20 17 20 18Z" fill="#8FBF7B"/>
+        <path d="M20 22 C20 22 27 20 28 13 C28 13 20 13 18 20 C18 20 20 21 20 22Z" fill="#4F7B54"/>
+        <path d="M14 30 C14 30 15 26 20 26 C25 26 26 30 26 30" stroke="#D9A441" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="logo-word">Green<span>Roots</span></span>
+    </a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#newsletter">Get Involved</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Open menu">☰</button>
+  </div>
+</header>
+
+<!-- 02 — HERO SECTION -->
+<section class="hero" id="top">
+  <div class="hero-frame">
+    <svg class="scene" viewBox="0 0 1120 520" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3A5F42"/>
+          <stop offset="100%" stop-color="#1F3D2B"/>
+        </linearGradient>
+      </defs>
+      <rect width="1120" height="520" fill="url(#skyGrad)"/>
+      <circle cx="930" cy="90" r="70" fill="#D9A441" opacity="0.55"/>
+      <path d="M0 360 C 160 300, 320 340, 480 310 C 640 280, 800 330, 1120 300 L1120 520 L0 520 Z" fill="#254631"/>
+      <path d="M0 420 C 200 380, 420 420, 620 400 C 820 380, 960 410, 1120 390 L1120 520 L0 520 Z" fill="#1B3826"/>
+      <g opacity="0.9">
+        <path d="M140 500 C140 460 150 420 150 400 C160 420 170 460 170 500Z" fill="#4F7B54"/>
+        <path d="M300 500 C300 450 315 400 315 380 C330 400 340 450 340 500Z" fill="#4F7B54"/>
+        <path d="M460 500 C460 470 470 440 470 425 C480 440 488 470 488 500Z" fill="#3F6748"/>
+        <path d="M980 500 C980 455 995 405 995 385 C1010 405 1020 455 1020 500Z" fill="#4F7B54"/>
+        <path d="M1060 500 C1060 465 1070 430 1070 415 C1080 430 1088 465 1088 500Z" fill="#3F6748"/>
+      </g>
+    </svg>
+    <div class="hero-overlay">
+      <h1>Growing community, one garden at a time</h1>
+      <p>GreenRoots partners with neighbourhoods to plant trees, tend shared gardens, and teach the next generation how to care for the land around them.</p>
+      <a class="btn hero-cta" href="#newsletter">Get Involved</a>
+    </div>
+  </div>
+</section>
+
+<!-- 03 — ABOUT US -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-media">
+      <svg viewBox="0 0 400 330" xmlns="http://www.w3.org/2000/svg">
+        <rect width="400" height="330" fill="#EAE3D3"/>
+        <rect x="0" y="220" width="400" height="110" fill="#C9D9BE"/>
+        <circle cx="90" cy="90" r="46" fill="#D9A441" opacity="0.5"/>
+        <path d="M0 240 C60 200 120 230 180 210 C240 190 300 220 400 200 L400 330 L0 330Z" fill="#4F7B54"/>
+        <path d="M0 270 C80 250 160 275 240 260 C320 245 360 265 400 250 L400 330 L0 330Z" fill="#2C4F35"/>
+        <g stroke="#1F3D2B" stroke-width="3" stroke-linecap="round">
+          <path d="M140 260 L140 190"/>
+          <path d="M140 210 C120 200 110 180 112 160"/>
+          <path d="M140 200 C160 192 172 174 172 156"/>
+        </g>
+        <g stroke="#1F3D2B" stroke-width="3" stroke-linecap="round">
+          <path d="M260 265 L260 205"/>
+          <path d="M260 220 C244 212 236 196 236 182"/>
+          <path d="M260 212 C276 206 286 190 286 176"/>
+        </g>
+      </svg>
+    </div>
+    <div class="about-copy">
+      <h2>Rooted in the neighbourhoods we serve</h2>
+      <p>Since 2011, GreenRoots has worked side by side with residents to turn vacant lots into gardens, line streets with shade trees, and give young people hands-on experience caring for green spaces.</p>
+      <p>Every project starts with the people who live there — we bring the tools, training, and native plants; the community brings the vision.</p>
+      <div class="about-stats">
+        <div class="stat"><b>18,400</b><span>trees planted</span></div>
+        <div class="stat"><b>62</b><span>community gardens</span></div>
+        <div class="stat"><b>9,000+</b><span>volunteers to date</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 — PROGRAMS / SERVICES CARDS -->
+<section class="programs" id="programs">
+  <div class="programs-inner">
+    <h2>Where your time and support go</h2>
+    <p class="programs-sub">Three ongoing programs, each shaped by the neighbourhoods that host them.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 21V10" stroke="#D9A441" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M12 12C12 12 6 11 5 5C5 5 12 5 13 11C13 11 12 12 12 12Z" fill="#8FBF7B"/>
+            <path d="M12 15C12 15 18 14 19 8C19 8 12 8 11 14C11 14 12 15 12 15Z" fill="#4F7B54"/>
+          </svg>
+        </div>
+        <h3>Tree Planting</h3>
+        <p>Community plantings that add shade and cool city blocks one street at a time, using species suited to the local climate.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="14" width="18" height="6" rx="1" fill="#4F7B54"/>
+            <path d="M7 14 C7 10 9 7 9 7 C9 7 11 10 11 14" stroke="#8FBF7B" stroke-width="1.6" fill="none"/>
+            <path d="M13 14 C13 9 16 6 16 6 C16 6 18 9 18 14" stroke="#D9A441" stroke-width="1.6" fill="none"/>
+          </svg>
+        </div>
+        <h3>Community Gardens</h3>
+        <p>Shared plots where neighbours grow their own food and swap seeds, tools, and know-how across generations.</p>
+      </div>
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 19 L12 5 L20 19 Z" stroke="#8FBF7B" stroke-width="1.6" fill="none" stroke-linejoin="round"/>
+            <path d="M12 5 L12 19" stroke="#D9A441" stroke-width="1.4"/>
+          </svg>
+        </div>
+        <h3>Youth Education</h3>
+        <p>After-school and summer programs that teach kids to grow, harvest, and cook food from their own garden beds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — GALLERY STRIP -->
+<section class="gallery" id="gallery">
+  <h2>From the field</h2>
+  <div class="gallery-strip">
+    <figure>
+      <svg viewBox="0 0 200 210" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="210" fill="#2C4F35"/>
+        <circle cx="150" cy="40" r="26" fill="#D9A441" opacity="0.6"/>
+        <path d="M0 150 C50 120 110 150 200 120 L200 210 L0 210Z" fill="#1F3D2B"/>
+        <path d="M60 150 L60 90" stroke="#8FBF7B" stroke-width="4" stroke-linecap="round"/>
+        <path d="M60 110 C40 100 34 80 36 65" stroke="#8FBF7B" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 200 210" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="210" fill="#3F6748"/>
+        <rect x="0" y="140" width="200" height="70" fill="#4F7B54"/>
+        <rect x="20" y="120" width="30" height="90" fill="#254631"/>
+        <rect x="70" y="100" width="30" height="110" fill="#1F3D2B"/>
+        <rect x="120" y="130" width="30" height="80" fill="#254631"/>
+        <rect x="160" y="90" width="30" height="120" fill="#1F3D2B"/>
+      </svg>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 200 210" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="210" fill="#EAE3D3"/>
+        <circle cx="100" cy="95" r="46" fill="#8FBF7B"/>
+        <circle cx="100" cy="95" r="18" fill="#D9A441"/>
+        <path d="M100 49 L100 15" stroke="#4F7B54" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </figure>
+    <figure>
+      <svg viewBox="0 0 200 210" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect width="200" height="210" fill="#1F3D2B"/>
+        <g fill="#4F7B54">
+          <circle cx="40" cy="60" r="16"/>
+          <circle cx="90" cy="40" r="22"/>
+          <circle cx="150" cy="65" r="18"/>
+          <circle cx="60" cy="100" r="14"/>
+          <circle cx="130" cy="105" r="16"/>
+        </g>
+        <rect x="0" y="150" width="200" height="60" fill="#162E20"/>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<!-- 06 — TESTIMONIAL -->
+<section class="testimonial">
+  <div class="testimonial-inner">
+    <span class="quote-mark">“</span>
+    <blockquote>GreenRoots turned the empty lot on our block into a garden the whole street looks after now. My kids know the names of vegetables I never grew up eating.</blockquote>
+    <div class="testimonial-person">
+      <div class="avatar">
+        <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+          <rect width="44" height="44" fill="#4F7B54"/>
+          <circle cx="22" cy="17" r="8" fill="#EAE3D3"/>
+          <path d="M6 42 C6 30 14 26 22 26 C30 26 38 30 38 42Z" fill="#EAE3D3"/>
+        </svg>
+      </div>
+      <div>
+        <b>Marisol Fernandez</b>
+        <span>Elmwood Street Garden volunteer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 — NEWSLETTER CTA -->
+<section class="newsletter" id="newsletter">
+  <div class="newsletter-inner">
+    <h2>Get planting updates in your inbox</h2>
+    <p>One email a month — new plantings, volunteer days, and open plots near you.</p>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Joined!';">
+      <input type="email" placeholder="you@example.com" required aria-label="Email address">
+      <button type="submit">Join</button>
+    </form>
+  </div>
+</section>
+
+<!-- 08 — FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-word">Green<span>Roots</span></span>
+      <p>A community-led nonprofit planting trees and gardens across the city since 2011.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#about">About Us</a>
+      <a href="#programs">Programs</a>
+      <a href="#gallery">Gallery</a>
+    </div>
+    <div class="footer-col">
+      <h4>Involved</h4>
+      <a href="#newsletter">Volunteer</a>
+      <a href="#newsletter">Donate</a>
+      <a href="#newsletter">Newsletter</a>
+    </div>
+    <div class="socials">
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M14 8h2V5h-2c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8c0-.5.3-1 1-1Z" stroke-width="1.2"/></svg></a>
+      <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none"><path d="M5 5 L19 19 M19 5 L5 19" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 GreenRoots. All rights reserved.</span>
+    <span>Made with care, one neighbourhood at a time.</span>
+  </div>
+</footer>
+
+</body>
+</html>
