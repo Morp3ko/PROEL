@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Task 7.1 – Minimalist Filipino Food (HTML5 Canvas)</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #fffaf2; margin: 0; padding: 24px; color: #5a3d2b; }
+  h1 { text-align: center; font-size: 1.4rem; margin-bottom: 24px; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fit, 200px); gap: 28px; justify-content: center; max-width: 1000px; margin: 0 auto; }
+  figure { margin: 0; text-align: center; font-weight: bold; }
+  canvas { display: block; border-radius: 16px; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+<h1>Minimalist Filipino Food</h1>
+<div class="gallery">
+  <figure><canvas id="c1" width="200" height="200"></canvas>Halo-Halo</figure>
+  <figure><canvas id="c2" width="200" height="200"></canvas>Lumpia</figure>
+  <figure><canvas id="c3" width="200" height="200"></canvas>Chicken Adobo</figure>
+  <figure><canvas id="c4" width="200" height="200"></canvas>Pandesal</figure>
+  <figure><canvas id="c5" width="200" height="200"></canvas>Leche Flan</figure>
+  <figure><canvas id="c6" width="200" height="200"></canvas>Calamansi</figure>
+  <figure><canvas id="c7" width="200" height="200"></canvas>Mango</figure>
+  <figure><canvas id="c8" width="200" height="200"></canvas>Sisig</figure>
+</div>
+
+<script>
+// ---------- helpers ----------
+function setup(id) {
+  const c = document.getElementById(id).getContext('2d');
+  c.fillStyle = '#fff1dc';
+  c.fillRect(0, 0, 200, 200);
+  return c;
+}
+function rr(c, x, y, w, h, r) {
+  c.beginPath();
+  c.moveTo(x + r, y);
+  c.lineTo(x + w - r, y); c.arcTo(x + w, y, x + w, y + r, r);
+  c.lineTo(x + w, y + h - r); c.arcTo(x + w, y + h, x + w - r, y + h, r);
+  c.lineTo(x + r, y + h); c.arcTo(x, y + h, x, y + h - r, r);
+  c.lineTo(x, y + r); c.arcTo(x, y, x + r, y, r);
+  c.closePath();
+}
+function fillRR(c, x, y, w, h, r, col) { rr(c, x, y, w, h, r); c.fillStyle = col; c.fill(); }
+function circ(c, x, y, r, col) { c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fillStyle = col; c.fill(); }
+function ell(c, x, y, rx, ry, col, rot) { c.beginPath(); c.ellipse(x, y, rx, ry, rot || 0, 0, Math.PI * 2); c.fillStyle = col; c.fill(); }
+function poly(c, pts, col) {
+  c.beginPath(); c.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 1; i < pts.length; i++) c.lineTo(pts[i][0], pts[i][1]);
+  c.closePath(); c.fillStyle = col; c.fill();
+}
+
+// ---------- 1. Halo-Halo ----------
+(function () {
+  const c = setup('c1');
+  const glass = [[50, 72], [150, 72], [132, 172], [68, 172]];
+  c.save();
+  c.beginPath(); glass.forEach((p, i) => i ? c.lineTo(p[0], p[1]) : c.moveTo(p[0], p[1])); c.closePath(); c.clip();
+  c.fillStyle = '#f8bbd0'; c.fillRect(0, 72, 200, 30);
+  c.fillStyle = '#ffd54f'; c.fillRect(0, 102, 200, 30);
+  c.fillStyle = '#8e5bd6'; c.fillRect(0, 132, 200, 50);
+  c.fillStyle = 'rgba(255,255,255,0.35)'; c.fillRect(60, 72, 10, 110);
+  c.restore();
+  fillRR(c, 58, 172, 84, 10, 4, '#6d4c41');
+  // shaved-ice dome
+  c.beginPath(); c.arc(100, 74, 50, Math.PI, 0); c.closePath(); c.fillStyle = '#ffffff'; c.fill();
+  // toppings
+  c.save(); c.translate(132, 36); c.rotate(0.55); fillRR(c, -5, -30, 20, 40, 3, '#e0b36a'); c.restore();
+  circ(c, 100, 38, 20, '#8e5bd6');
+  circ(c, 74, 62, 6, '#ffd54f'); circ(c, 126, 62, 6, '#ffd54f');
+  circ(c, 62, 70, 5, '#b71c1c'); circ(c, 138, 70, 5, '#b71c1c');
+  circ(c, 90, 66, 4, '#43a047');
+})();
+
+// ---------- 2. Lumpia ----------
+(function () {
+  const c = setup('c2');
+  function roll(x, y, rot) {
+    c.save(); c.translate(x, y); c.rotate(rot);
+    fillRR(c, -62, -17, 124, 34, 17, '#e8a33d');
+    fillRR(c, -50, -9, 100, 8, 4, '#f4c46b');
+    ell(c, 56, 0, 8, 14, '#b9701d');
+    ell(c, 57, 0, 4, 8, '#7cb342');
+    c.restore();
+  }
+  roll(92, 78, -0.45);
+  roll(98, 124, -0.45);
+  // dipping sauce
+  c.beginPath(); c.arc(150, 160, 28, 0, Math.PI); c.closePath(); c.fillStyle = '#eceff1'; c.fill();
+  ell(c, 150, 160, 28, 8, '#d32f2f');
+})();
+
+// ---------- 3. Chicken Adobo ----------
+(function () {
+  const c = setup('c3');
+  // contents
+  c.beginPath(); c.arc(78, 104, 40, Math.PI, 0); c.closePath(); c.fillStyle = '#ffffff'; c.fill();
+  c.beginPath(); c.arc(128, 104, 34, Math.PI, 0); c.closePath(); c.fillStyle = '#6d3b1e'; c.fill();
+  ell(c, 120, 80, 15, 10, '#9a5b2a', -0.3);
+  ell(c, 144, 86, 13, 9, '#9a5b2a', 0.3);
+  ell(c, 136, 66, 11, 4, '#7cb342', 0.6);
+  [[60, 80], [80, 74], [95, 86], [70, 92], [52, 94]].forEach(p => ell(c, p[0], p[1], 5, 2, '#e8dfd0', 0.5));
+  // bowl
+  c.beginPath(); c.arc(100, 104, 74, 0, Math.PI); c.closePath(); c.fillStyle = '#37474f'; c.fill();
+  fillRR(c, 22, 96, 156, 12, 6, '#546e7a');
+  fillRR(c, 72, 172, 56, 9, 4, '#37474f');
+  ell(c, 100, 140, 30, 4, 'rgba(255,255,255,0.18)');
+})();
+
+// ---------- 4. Pandesal ----------
+(function () {
+  const c = setup('c4');
+  function roll(x, y) {
+    ell(c, x, y, 46, 34, '#d98e3a');
+    ell(c, x, y - 6, 38, 24, '#ecb35a');
+    [[-20, -10], [-4, -16], [14, -12], [24, 0], [-26, 4], [4, 6], [-10, 12]].forEach(d => circ(c, x + d[0], y + d[1], 2.5, '#fbe0a1'));
+  }
+  roll(100, 78);
+  roll(66, 124);
+  roll(134, 124);
+})();
+
+// ---------- 5. Leche Flan ----------
+(function () {
+  const c = setup('c5');
+  ell(c, 100, 158, 86, 17, '#cfd8dc');
+  ell(c, 100, 154, 70, 11, '#eceff1');
+  // custard
+  c.beginPath();
+  c.moveTo(50, 152); c.lineTo(62, 102); c.quadraticCurveTo(100, 84, 138, 102); c.lineTo(150, 152);
+  c.closePath(); c.fillStyle = '#ffd166'; c.fill();
+  // caramel top and drips
+  c.beginPath(); c.moveTo(62, 102); c.quadraticCurveTo(100, 84, 138, 102); c.lineTo(138, 110); c.lineTo(62, 110); c.closePath();
+  c.fillStyle = '#b4561b'; c.fill();
+  fillRR(c, 68, 104, 14, 28, 7, '#b4561b');
+  fillRR(c, 104, 104, 12, 18, 6, '#b4561b');
+  fillRR(c, 124, 104, 13, 34, 6.5, '#b4561b');
+  fillRR(c, 88, 112, 6, 10, 3, 'rgba(255,255,255,0.35)');
+})();
+
+// ---------- 6. Calamansi ----------
+(function () {
+  const c = setup('c6');
+  // whole fruit
+  circ(c, 66, 122, 42, '#7cb342');
+  circ(c, 54, 108, 8, 'rgba(255,255,255,0.3)');
+  ell(c, 76, 72, 20, 8, '#388e3c', -0.6);
+  fillRR(c, 63, 76, 5, 12, 2, '#5d4037');
+  // halved fruit
+  circ(c, 138, 98, 40, '#8bc34a');
+  circ(c, 138, 98, 33, '#f7d046');
+  c.strokeStyle = '#fff3b0'; c.lineWidth = 3; c.lineCap = 'round';
+  for (let i = 0; i < 8; i++) {
+    const a = i * Math.PI / 4;
+    c.beginPath(); c.moveTo(138, 98); c.lineTo(138 + 31 * Math.cos(a), 98 + 31 * Math.sin(a)); c.stroke();
+  }
+  circ(c, 138, 98, 5, '#fff3b0');
+})();
+
+// ---------- 7. Mango ----------
+(function () {
+  const c = setup('c7');
+  const g = c.createLinearGradient(60, 40, 150, 170);
+  g.addColorStop(0, '#9ccc65'); g.addColorStop(0.45, '#ffd54f'); g.addColorStop(1, '#ffb300');
+  c.beginPath(); c.ellipse(100, 112, 44, 66, 0.55, 0, Math.PI * 2); c.fillStyle = g; c.fill();
+  c.beginPath(); c.arc(78, 100, 30, 3.6, 4.5); c.strokeStyle = 'rgba(255,255,255,0.5)'; c.lineWidth = 5; c.lineCap = 'round'; c.stroke();
+  fillRR(c, 118, 28, 6, 18, 3, '#5d4037');
+  ell(c, 142, 34, 24, 9, '#43a047', -0.35);
+})();
+
+// ---------- 8. Sisig ----------
+(function () {
+  const c = setup('c8');
+  fillRR(c, 22, 150, 156, 18, 6, '#6d4c41');
+  fillRR(c, 30, 156, 140, 4, 2, '#8d6e63');
+  ell(c, 100, 140, 78, 24, '#263238');
+  ell(c, 100, 134, 68, 18, '#37474f');
+  // sisig mound
+  ell(c, 100, 126, 56, 22, '#c68a4a');
+  [[70, 122, '#8d5524'], [90, 132, '#a9683a'], [112, 124, '#8d5524'], [130, 130, '#a9683a'], [80, 112, '#a9683a'], [122, 114, '#8d5524'], [100, 120, '#d9a066']]
+    .forEach(p => fillRR(c, p[0] - 7, p[1] - 5, 14, 10, 3, p[2]));
+  // egg
+  ell(c, 100, 102, 26, 16, '#ffffff');
+  circ(c, 100, 100, 10, '#ffb300');
+  // chili
+  ell(c, 70, 108, 8, 3, '#e53935', 0.6); ell(c, 134, 110, 8, 3, '#43a047', -0.6);
+  // sizzling steam
+  c.strokeStyle = '#b0bec5'; c.lineWidth = 4; c.lineCap = 'round';
+  [[70, 70], [100, 62], [130, 70]].forEach(p => {
+    c.beginPath(); c.moveTo(p[0], p[1] + 24); c.quadraticCurveTo(p[0] - 10, p[1] + 12, p[0], p[1]); c.quadraticCurveTo(p[0] + 10, p[1] - 12, p[0], p[1] - 24); c.stroke();
+  });
+})();
+</script>
+</body>
+</html>
