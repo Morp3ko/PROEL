@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Task 5.1 – Night Sky Collection</title>
+<style>
+  body { font-family: Georgia, serif; background: #1a1a2e; margin: 0; padding: 24px; color: #fff3d6; }
+  h1 { text-align: center; font-size: 1.5rem; }
+  .gallery { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+  figure { margin: 0; text-align: center; font-weight: bold; font-size: 0.85rem; max-width: 200px; }
+  svg { display: block; margin-bottom: 8px; box-shadow: 0 2px 10px rgba(0,0,0,.6); }
+</style>
+</head>
+<body>
+<h1>Learning Task 5.1 – Night Sky Collection</h1>
+<div class="gallery">
+
+<!-- 1. Line and Circle : Solar orbits -->
+<figure>
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#0d1b3e"/>
+  <g stroke="#ff5d73" stroke-width="2">
+    <line x1="100" y1="230" x2="100" y2="0"/><line x1="100" y1="230" x2="30" y2="0"/>
+    <line x1="100" y1="230" x2="170" y2="0"/><line x1="100" y1="230" x2="0" y2="60"/>
+    <line x1="100" y1="230" x2="200" y2="60"/><line x1="100" y1="230" x2="0" y2="150"/>
+    <line x1="100" y1="230" x2="200" y2="150"/>
+  </g>
+  <g fill="none" stroke="#fff3d6" stroke-width="1.5">
+    <circle cx="100" cy="230" r="70"/><circle cx="100" cy="230" r="95"/><circle cx="100" cy="230" r="120"/>
+  </g>
+  <circle cx="100" cy="230" r="50" fill="#ffc145"/>
+  <circle cx="50" cy="181" r="9" fill="#3ddbb0"/>
+  <circle cx="167" cy="163" r="12" fill="#ff5d73"/>
+  <circle cx="15" cy="145" r="7" fill="#8e3b9e"/>
+  <rect x="3" y="3" width="194" height="294" fill="none" stroke="#ffc145" stroke-width="4"/>
+</svg>
+<figcaption>1. Line and Circle</figcaption>
+</figure>
+
+<!-- 2. Circle and Rectangle : City at night -->
+<figure>
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#3a2e8f"/>
+  <circle cx="150" cy="60" r="28" fill="#fff3d6"/>
+  <circle cx="160" cy="52" r="24" fill="#3a2e8f"/>
+  <g fill="#fff3d6"><circle cx="30" cy="30" r="2"/><circle cx="70" cy="55" r="3"/><circle cx="100" cy="20" r="2"/><circle cx="40" cy="95" r="2"/><circle cx="110" cy="85" r="2"/></g>
+  <g fill="#0d1b3e">
+    <rect x="10" y="160" width="40" height="140"/><rect x="55" y="120" width="45" height="180"/>
+    <rect x="105" y="180" width="35" height="120"/><rect x="145" y="140" width="45" height="160"/>
+  </g>
+  <g fill="#ffc145">
+    <rect x="18" y="172" width="8" height="10"/><rect x="34" y="172" width="8" height="10"/>
+    <rect x="18" y="200" width="8" height="10"/><rect x="34" y="228" width="8" height="10"/>
+    <rect x="64" y="135" width="9" height="12"/><rect x="82" y="135" width="9" height="12"/>
+    <rect x="64" y="165" width="9" height="12"/><rect x="82" y="195" width="9" height="12"/>
+    <rect x="64" y="225" width="9" height="12"/><rect x="82" y="255" width="9" height="12"/>
+    <rect x="113" y="195" width="8" height="10"/><rect x="125" y="225" width="8" height="10"/>
+    <rect x="154" y="155" width="8" height="10"/><rect x="172" y="185" width="8" height="10"/>
+    <rect x="154" y="215" width="8" height="10"/><rect x="172" y="245" width="8" height="10"/>
+  </g>
+  <rect x="0" y="285" width="200" height="15" fill="#ff5d73"/>
+  <rect x="3" y="3" width="194" height="294" fill="none" stroke="#ffc145" stroke-width="4"/>
+</svg>
+<figcaption>2. Circle and Rectangle</figcaption>
+</figure>
+
+<!-- 3. Polyline and Circle : Ocean waves -->
+<figure>
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#0d1b3e"/>
+  <g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline stroke="#3ddbb0" transform="translate(0,60)"  points="0,0 20,-8 40,0 60,8 80,0 100,-8 120,0 140,8 160,0 180,-8 200,0"/>
+    <polyline stroke="#fff3d6" transform="translate(0,100)" points="0,0 20,8 40,0 60,-8 80,0 100,8 120,0 140,-8 160,0 180,8 200,0"/>
+    <polyline stroke="#ff5d73" transform="translate(0,140)" points="0,0 20,-8 40,0 60,8 80,0 100,-8 120,0 140,8 160,0 180,-8 200,0"/>
+    <polyline stroke="#ffc145" transform="translate(0,180)" points="0,0 20,8 40,0 60,-8 80,0 100,8 120,0 140,-8 160,0 180,8 200,0"/>
+    <polyline stroke="#8e3b9e" transform="translate(0,220)" points="0,0 20,-8 40,0 60,8 80,0 100,-8 120,0 140,8 160,0 180,-8 200,0"/>
+    <polyline stroke="#3ddbb0" transform="translate(0,260)" points="0,0 20,8 40,0 60,-8 80,0 100,8 120,0 140,-8 160,0 180,8 200,0"/>
+  </g>
+  <g fill="none" stroke="#fff3d6" stroke-width="1.5">
+    <circle cx="30" cy="30" r="8"/><circle cx="150" cy="25" r="5"/><circle cx="170" cy="80" r="10"/>
+    <circle cx="60" cy="120" r="6"/><circle cx="120" cy="160" r="9"/><circle cx="25" cy="200" r="7"/>
+    <circle cx="165" cy="240" r="6"/><circle cx="90" cy="280" r="8"/>
+  </g>
+  <rect x="3" y="3" width="194" height="294" fill="none" stroke="#3ddbb0" stroke-width="4"/>
+</svg>
+<figcaption>3. Polyline and Circle</figcaption>
+</figure>
+
+<!-- 4. Polygon and Ellipse : Mountains -->
+<figure>
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#fff3d6"/>
+  <ellipse cx="100" cy="150" rx="65" ry="50" fill="#ffc145"/>
+  <ellipse cx="40" cy="60" rx="28" ry="10" fill="#ffffff"/>
+  <ellipse cx="150" cy="40" rx="30" ry="9" fill="#ffffff"/>
+  <ellipse cx="120" cy="85" rx="22" ry="7" fill="#ffffff"/>
+  <polygon fill="#3a2e8f" points="0,300 0,190 55,110 110,200 160,140 200,200 200,300"/>
+  <polygon fill="#ffffff" points="55,110 40,135 55,128 68,138"/>
+  <polygon fill="#ffffff" points="160,140 147,160 160,154 172,162"/>
+  <polygon fill="#8e3b9e" points="0,300 0,240 40,200 90,250 140,205 200,255 200,300"/>
+  <polygon fill="#0d1b3e" points="0,300 0,275 50,250 100,285 150,258 200,285 200,300"/>
+  <rect x="3" y="3" width="194" height="294" fill="none" stroke="#ff5d73" stroke-width="4"/>
+</svg>
+<figcaption>4. Polygon and Ellipse</figcaption>
+</figure>
+
+<!-- 5. Circle, Line and Rectangle : Balloon -->
+<figure>
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#2a1a5e"/>
+  <g stroke="#fff3d6" stroke-width="2">
+    <line x1="60" y1="105" x2="85" y2="240"/><line x1="130" y1="120" x2="115" y2="240"/><line x1="100" y1="178" x2="100" y2="240"/>
+  </g>
+  <circle cx="60" cy="70" r="35" fill="#ff5d73"/>
+  <circle cx="130" cy="90" r="30" fill="#ffc145"/>
+  <circle cx="100" cy="150" r="28" fill="#3ddbb0"/>
+  <rect x="80" y="240" width="40" height="30" fill="#8e3b9e" stroke="#fff3d6" stroke-width="2"/>
+  <rect x="0" y="280" width="200" height="20" fill="#3ddbb0"/>
+  <rect x="3" y="3" width="194" height="294" fill="none" stroke="#ffc145" stroke-width="4"/>
+</svg>
+<figcaption>5. Circle, Line and Rectangle</figcaption>
+</figure>
+
+<!-- 6. Polyline and Polygon : Constellation -->
+<figure>
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#0d1b3e"/>
+  <polyline fill="none" stroke="#3ddbb0" stroke-width="2" stroke-dasharray="6 4" points="40,50 100,90 160,60 130,160 50,200 150,250"/>
+  <g fill="#ffc145">
+    <polygon points="40,38 44,46 52,50 44,54 40,62 36,54 28,50 36,46"/>
+    <polygon points="100,76 105,85 114,90 105,95 100,104 95,95 86,90 95,85"/>
+    <polygon points="160,48 164,56 172,60 164,64 160,72 156,64 148,60 156,56"/>
+    <polygon points="130,144 135,155 146,160 135,165 130,176 125,165 114,160 125,155"/>
+    <polygon points="50,188 54,196 62,200 54,204 50,212 46,204 38,200 46,196"/>
+    <polygon points="150,236 155,245 164,250 155,255 150,264 145,255 136,250 145,245"/>
+  </g>
+  <polygon fill="none" stroke="#8e3b9e" stroke-width="2" points="100,215 125,225 125,255 100,270 75,255 75,225"/>
+  <rect x="3" y="3" width="194" height="294" fill="none" stroke="#ff5d73" stroke-width="4"/>
+</svg>
+<figcaption>6. Polyline and Polygon</figcaption>
+</figure>
+
+<!-- 7. All six elements : Rocket launch -->
+<figure>
+<svg width="200" height="300" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="300" fill="#0d1b3e"/>
+  <g stroke="#fff3d6" stroke-width="1.5">
+    <line x1="25" y1="120" x2="25" y2="180"/><line x1="170" y1="150" x2="170" y2="220"/><line x1="55" y1="190" x2="55" y2="230"/>
+  </g>
+  <ellipse cx="45" cy="55" rx="25" ry="12" fill="#8e3b9e"/>
+  <ellipse cx="45" cy="55" rx="38" ry="5" fill="none" stroke="#ffc145" stroke-width="2"/>
+  <polygon fill="#ff5d73" points="100,40 120,85 80,85"/>
+  <rect x="80" y="85" width="40" height="85" fill="#fff3d6"/>
+  <polygon fill="#ff5d73" points="80,130 55,175 80,170"/>
+  <polygon fill="#ff5d73" points="120,130 145,175 120,170"/>
+  <circle cx="100" cy="110" r="11" fill="#3ddbb0" stroke="#0d1b3e" stroke-width="3"/>
+  <circle cx="100" cy="145" r="5" fill="#8e3b9e"/>
+  <rect x="88" y="170" width="24" height="10" fill="#ffc145"/>
+  <polyline fill="none" stroke="#ffc145" stroke-width="4" stroke-linejoin="round" points="100,182 92,200 108,215 92,235 108,255 100,275"/>
+  <rect x="3" y="3" width="194" height="294" fill="none" stroke="#3ddbb0" stroke-width="4"/>
+</svg>
+<figcaption>7. Line, Circle, Rectangle, Polyline, Polygon and Ellipse</figcaption>
+</figure>
+
+</div>
+</body>
+</html>
