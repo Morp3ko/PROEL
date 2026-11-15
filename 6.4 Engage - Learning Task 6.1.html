@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Task 6.1 – The One Ring (Text Ring)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #0a0705; display: flex; justify-content: center; padding: 20px; }
+  svg { max-width: 100%; height: auto; font-family: 'Cinzel', 'Trajan Pro', Georgia, serif; }
+</style>
+</head>
+<body>
+<svg width="900" height="780" viewBox="0 0 900 780" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="45%" r="75%">
+      <stop offset="0%" stop-color="#3d1608"/>
+      <stop offset="60%" stop-color="#160a06"/>
+      <stop offset="100%" stop-color="#080504"/>
+    </radialGradient>
+    <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="170" y1="50" x2="730" y2="630">
+      <stop offset="0%" stop-color="#fff3b0"/>
+      <stop offset="35%" stop-color="#f0c030"/>
+      <stop offset="65%" stop-color="#d49a10"/>
+      <stop offset="100%" stop-color="#fff0a0"/>
+    </linearGradient>
+    <radialGradient id="eye" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="60%" stop-color="#ff7a00"/>
+      <stop offset="100%" stop-color="#b3150a"/>
+    </radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Top arcs (read left to right, letters point outward) -->
+    <path id="t1" d="M 182,340 A 268 268 0 0 1 718,340"/>
+    <path id="t2" d="M 216,340 A 234 234 0 0 1 684,340"/>
+    <path id="t3" d="M 250,340 A 200 200 0 0 1 650,340"/>
+    <!-- Bottom arcs (read left to right, letters point inward) -->
+    <path id="b1" d="M 160,340 A 290 290 0 0 0 740,340"/>
+    <path id="b2" d="M 194,340 A 256 256 0 0 0 706,340"/>
+    <path id="b3" d="M 228,340 A 222 222 0 0 0 672,340"/>
+  </defs>
+
+  <rect width="900" height="780" fill="url(#sky)"/>
+
+  <!-- The Ring: made entirely of gold text -->
+  <g fill="url(#gold)" stroke="#8a5a00" stroke-width="0.6" font-size="28" font-weight="800" filter="url(#glow)">
+    <!-- outer ring -->
+    <text><textPath href="#t1" startOffset="50%" text-anchor="middle" textLength="800" lengthAdjust="spacing">ONE RING TO RULE THEM ALL</textPath></text>
+    <text><textPath href="#b1" startOffset="50%" text-anchor="middle" textLength="866" lengthAdjust="spacing">NOT ALL THOSE WHO WANDER ARE LOST</textPath></text>
+    <!-- middle ring -->
+    <text><textPath href="#t2" startOffset="50%" text-anchor="middle" textLength="690" lengthAdjust="spacing">ONE RING · ONE RING · ONE RING</textPath></text>
+    <text><textPath href="#b2" startOffset="50%" text-anchor="middle" textLength="755" lengthAdjust="spacing">ONE RING · ONE RING · ONE RING</textPath></text>
+    <!-- inner ring -->
+    <text><textPath href="#t3" startOffset="50%" text-anchor="middle" textLength="590" lengthAdjust="spacing">MY PRECIOUS · MY PRECIOUS</textPath></text>
+    <text><textPath href="#b3" startOffset="50%" text-anchor="middle" textLength="655" lengthAdjust="spacing">MY PRECIOUS · MY PRECIOUS</textPath></text>
+  </g>
+
+  <!-- Eye of Sauron (retained) -->
+  <g filter="url(#glow)">
+    <path d="M 350,340 Q 450,240 550,340 Q 450,440 350,340 Z" fill="url(#eye)" stroke="#ff5a00" stroke-width="3"/>
+    <ellipse cx="450" cy="340" rx="11" ry="48" fill="#0a0705"/>
+  </g>
+
+  <text x="450" y="740" text-anchor="middle" font-size="46" font-weight="800" fill="url(#gold)" letter-spacing="4" filter="url(#glow)">YOU SHALL NOT PASS!</text>
+</svg>
+</body>
+</html>
